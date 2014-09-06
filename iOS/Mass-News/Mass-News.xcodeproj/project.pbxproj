@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0656FCECDEBD407A9EB25F22 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B9D25C8C554FF79DF2AD28 /* libPods.a */; };
+		3B73109319BB862C00803B4C /* JWBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B73109019BB862C00803B4C /* JWBlurView.m */; };
+		3B73109419BB862C00803B4C /* UIViewController+ENPopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B73109219BB862C00803B4C /* UIViewController+ENPopUp.m */; };
+		3B73109819BB86B800803B4C /* MNPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B73109619BB86B800803B4C /* MNPopUpViewController.m */; };
+		3B73109919BB86B800803B4C /* MNPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B73109719BB86B800803B4C /* MNPopUpViewController.xib */; };
 		3BE35BC119BACD4A001673BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE35BC019BACD4A001673BB /* Foundation.framework */; };
 		3BE35BC319BACD4A001673BB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE35BC219BACD4A001673BB /* CoreGraphics.framework */; };
 		3BE35BC519BACD4A001673BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE35BC419BACD4A001673BB /* UIKit.framework */; };
@@ -35,6 +39,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B73108F19BB862C00803B4C /* JWBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWBlurView.h; sourceTree = "<group>"; };
+		3B73109019BB862C00803B4C /* JWBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWBlurView.m; sourceTree = "<group>"; };
+		3B73109119BB862C00803B4C /* UIViewController+ENPopUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ENPopUp.h"; sourceTree = "<group>"; };
+		3B73109219BB862C00803B4C /* UIViewController+ENPopUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ENPopUp.m"; sourceTree = "<group>"; };
+		3B73109519BB86B800803B4C /* MNPopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNPopUpViewController.h; sourceTree = "<group>"; };
+		3B73109619BB86B800803B4C /* MNPopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNPopUpViewController.m; sourceTree = "<group>"; };
+		3B73109719BB86B800803B4C /* MNPopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MNPopUpViewController.xib; sourceTree = "<group>"; };
 		3BE35BBD19BACD4A001673BB /* Mass-News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mass-News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BE35BC019BACD4A001673BB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3BE35BC219BACD4A001673BB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -83,6 +94,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B73108E19BB862C00803B4C /* ENPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				3B73108F19BB862C00803B4C /* JWBlurView.h */,
+				3B73109019BB862C00803B4C /* JWBlurView.m */,
+				3B73109119BB862C00803B4C /* UIViewController+ENPopUp.h */,
+				3B73109219BB862C00803B4C /* UIViewController+ENPopUp.m */,
+			);
+			path = ENPopUp;
+			sourceTree = "<group>";
+		};
 		3BE35BB419BACD4A001673BB = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +140,7 @@
 		3BE35BC619BACD4A001673BB /* Mass-News */ = {
 			isa = PBXGroup;
 			children = (
+				3B73108E19BB862C00803B4C /* ENPopUp */,
 				3BE35BCF19BACD4A001673BB /* MNAppDelegate.h */,
 				3BE35BD019BACD4A001673BB /* MNAppDelegate.m */,
 				3BE35BD219BACD4A001673BB /* Images.xcassets */,
@@ -125,6 +148,9 @@
 				3BE35C0019BB1F8E001673BB /* MNMainViewController.h */,
 				3BE35C0119BB1F8E001673BB /* MNMainViewController.m */,
 				3BE35BFB19BB17BF001673BB /* MNConnectButton.xib */,
+				3B73109519BB86B800803B4C /* MNPopUpViewController.h */,
+				3B73109619BB86B800803B4C /* MNPopUpViewController.m */,
+				3B73109719BB86B800803B4C /* MNPopUpViewController.xib */,
 			);
 			path = "Mass-News";
 			sourceTree = "<group>";
@@ -239,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B73109919BB86B800803B4C /* MNPopUpViewController.xib in Resources */,
 				3BE35BFC19BB17BF001673BB /* MNConnectButton.xib in Resources */,
 				3BE35BCB19BACD4A001673BB /* InfoPlist.strings in Resources */,
 				3BE35BD319BACD4A001673BB /* Images.xcassets in Resources */,
@@ -293,9 +320,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B73109319BB862C00803B4C /* JWBlurView.m in Sources */,
 				3BE35C0219BB1F8E001673BB /* MNMainViewController.m in Sources */,
 				3BE35BCD19BACD4A001673BB /* main.m in Sources */,
 				3BE35BD119BACD4A001673BB /* MNAppDelegate.m in Sources */,
+				3B73109819BB86B800803B4C /* MNPopUpViewController.m in Sources */,
+				3B73109419BB862C00803B4C /* UIViewController+ENPopUp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

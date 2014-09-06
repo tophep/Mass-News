@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 
 @interface MNMainViewController : UIViewController
 
 @property (retain, nonatomic) IBOutlet UIButton *connectButton;
+@property (retain, nonatomic) UIViewController *popUpViewController;
 
 - (IBAction)connectButtonTouch:(id)sender;
+- (void)finishButtonTouch;
 - (void)dataJSONRetrieval;
 
 @end
