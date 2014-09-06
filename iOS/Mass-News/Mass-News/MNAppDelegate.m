@@ -7,6 +7,7 @@
 //
 
 #import "MNAppDelegate.h"
+#import "MNMainViewController.h"
 
 @implementation MNAppDelegate
 
@@ -14,6 +15,13 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    // Create a view controller
+    MNMainViewController *mainViewController = [[MNMainViewController alloc] init];
+    
+    //Place MusicViewController's view in the window hierarchy
+    self.window.rootViewController = mainViewController;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
