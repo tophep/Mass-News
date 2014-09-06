@@ -20,7 +20,8 @@
 		3BE35BDC19BACD4A001673BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE35BC419BACD4A001673BB /* UIKit.framework */; };
 		3BE35BE419BACD4A001673BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3BE35BE219BACD4A001673BB /* InfoPlist.strings */; };
 		3BE35BE619BACD4A001673BB /* Mass_NewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE35BE519BACD4A001673BB /* Mass_NewsTests.m */; };
-		3BE35BF219BB0498001673BB /* MNMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE35BF019BB0498001673BB /* MNMainViewController.m */; };
+		3BE35BFC19BB17BF001673BB /* MNConnectButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BE35BFB19BB17BF001673BB /* MNConnectButton.xib */; };
+		3BE35C0219BB1F8E001673BB /* MNMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE35C0119BB1F8E001673BB /* MNMainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,8 +51,9 @@
 		3BE35BE119BACD4A001673BB /* Mass-NewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Mass-NewsTests-Info.plist"; sourceTree = "<group>"; };
 		3BE35BE319BACD4A001673BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3BE35BE519BACD4A001673BB /* Mass_NewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mass_NewsTests.m; sourceTree = "<group>"; };
-		3BE35BEF19BB0498001673BB /* MNMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMainViewController.h; sourceTree = "<group>"; };
-		3BE35BF019BB0498001673BB /* MNMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMainViewController.m; sourceTree = "<group>"; };
+		3BE35BFB19BB17BF001673BB /* MNConnectButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MNConnectButton.xib; sourceTree = "<group>"; };
+		3BE35C0019BB1F8E001673BB /* MNMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMainViewController.h; sourceTree = "<group>"; };
+		3BE35C0119BB1F8E001673BB /* MNMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMainViewController.m; sourceTree = "<group>"; };
 		45B9D25C8C554FF79DF2AD28 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B4AC7B41564F5789F7FA60 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,8 +122,9 @@
 				3BE35BD019BACD4A001673BB /* MNAppDelegate.m */,
 				3BE35BD219BACD4A001673BB /* Images.xcassets */,
 				3BE35BC719BACD4A001673BB /* Supporting Files */,
-				3BE35BEF19BB0498001673BB /* MNMainViewController.h */,
-				3BE35BF019BB0498001673BB /* MNMainViewController.m */,
+				3BE35C0019BB1F8E001673BB /* MNMainViewController.h */,
+				3BE35C0119BB1F8E001673BB /* MNMainViewController.m */,
+				3BE35BFB19BB17BF001673BB /* MNConnectButton.xib */,
 			);
 			path = "Mass-News";
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BE35BFC19BB17BF001673BB /* MNConnectButton.xib in Resources */,
 				3BE35BCB19BACD4A001673BB /* InfoPlist.strings in Resources */,
 				3BE35BD319BACD4A001673BB /* Images.xcassets in Resources */,
 			);
@@ -289,7 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BE35BF219BB0498001673BB /* MNMainViewController.m in Sources */,
+				3BE35C0219BB1F8E001673BB /* MNMainViewController.m in Sources */,
 				3BE35BCD19BACD4A001673BB /* main.m in Sources */,
 				3BE35BD119BACD4A001673BB /* MNAppDelegate.m in Sources */,
 			);

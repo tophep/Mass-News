@@ -19,7 +19,7 @@
     // Create a view controller
     MNMainViewController *mainViewController = [[MNMainViewController alloc] init];
     
-    //Place MusicViewController's view in the window hierarchy
+    //Place mainViewController's view in the window hierarchy
     self.window.rootViewController = mainViewController;
     
     self.window.backgroundColor = [UIColor whiteColor];

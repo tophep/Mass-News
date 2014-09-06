@@ -12,4 +12,9 @@
 
 @interface MNMainViewController : UIViewController
 
+@property (retain, nonatomic) IBOutlet UIButton *connectButton;
+
+- (IBAction)connectButtonTouch:(id)sender;
+- (void)dataJSONRetrieval;
+
 @end

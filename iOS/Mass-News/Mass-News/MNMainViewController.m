@@ -12,6 +12,8 @@
 
 @interface MNMainViewController () <VCSessionDelegate>
 @property (nonatomic, retain) VCSimpleSession* session;
+@property (nonatomic, copy) NSString* url;
+@property (nonatomic, copy) NSString* streamKey;
 @end
 
 @implementation MNMainViewController
@@ -23,8 +25,16 @@
     
     _session = [[VCSimpleSession alloc] initWithVideoSize:CGSizeMake(1280, 720) frameRate:30 bitrate:1000000];
     
+    _url = @"rtmp://live-ord.twitch.tv/app";
+    _streamKey = @"live_70680492_QzRH7KTYxFBRdMKSbt4uYjBWVPprrE";
+    
     self.view = _session.previewView;
     _session.previewView.frame = [[UIScreen mainScreen] bounds];
+    
+    [[NSBundle mainBundle] loadNibNamed: @"MNConnectButton" owner: self options: nil];
+    self.connectButton.frame = CGRectMake(20, 474, 280, 74);
+    [self.view addSubview:self.connectButton];
+    
     _session.delegate = self;
 }
 
@@ -34,21 +44,37 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)connectButtonTouch:(id)sender {
+    
+    switch(_session.rtmpSessionState) {
+        case VCSessionStateNone:
+        case VCSessionStatePreviewStarted:
+        case VCSessionStateEnded:
+        case VCSessionStateError:
+            [_session startRtmpSessionWithURL:_url andStreamKey:_streamKey];
+            break;
+        default:
+            [_session endRtmpSession];
+            break;
+    }
+}
 
 - (void) connectionStatusChanged:(VCSessionState) state
 {
     switch(state) {
         case VCSessionStateStarting:
-            //[self.btnConnect setTitle:@"Connecting" forState:UIControlStateNormal];
+            [self.connectButton setTitle:@"CONNECTING" forState:UIControlStateNormal];
+            [self.connectButton setBackgroundColor:[UIColor colorWithRed:238.0/255 green:186.0/255 blue:76.0/255 alpha:1]];
             break;
         case VCSessionStateStarted:
-            //[self.btnConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
+            [self.connectButton setTitle:@"DISCONNECT" forState:UIControlStateNormal];
+            [self.connectButton setBackgroundColor:[UIColor colorWithRed:227.0/255 green:73.0/255 blue:59.0/255 alpha:1]];
             break;
         default:
-            //[self.btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
+            [self.connectButton setTitle:@"CONNECT" forState:UIControlStateNormal];
+            [self.connectButton setBackgroundColor:[UIColor colorWithRed:35.0/255 green:181.0/255 blue:175.0/255 alpha:1]];
             break;
     }
 }
 
 @end
-
