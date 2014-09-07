@@ -45,7 +45,7 @@
     //_url = @"rtmp://live-ord.twitch.tv/app";
     _url = @"rtmp://massne.ws/live";
     //_streamKey = @"live_70680492_QzRH7KTYxFBRdMKSbt4uYjBWVPprrE";
-    _streamKey = @"";
+    //_streamKey = @"test";
     
     self.view = _session.previewView;
     _session.previewView.frame = [[UIScreen mainScreen] bounds];
@@ -89,7 +89,7 @@
     
     NSError *error;
     NSData *jsonTagData = [NSJSONSerialization dataWithJSONObject:jsonTagDictionary options:0 error:&error];
-
+    
     NSURL *url1 = [[NSURL alloc] initWithString:@"http://massne.ws:8080/api/tags"];
     NSMutableURLRequest *request1 = [NSMutableURLRequest requestWithURL:url1];
     [request1 setHTTPMethod:@"POST"];
@@ -98,23 +98,12 @@
     [request1 setHTTPBody:jsonTagData];
     
     NSURLConnection *connection1 = [[NSURLConnection alloc] initWithRequest:request1
-                                                                  delegate:self];
+                                                                   delegate:self];
     
     [connection1 start];
     
     [self dismissPopUpViewController];
     
-    switch(_session.rtmpSessionState) {
-        case VCSessionStateNone:
-        case VCSessionStatePreviewStarted:
-        case VCSessionStateEnded:
-        case VCSessionStateError:
-            [_session startRtmpSessionWithURL:_url andStreamKey:_streamKey];
-            break;
-        default:
-            [_session endRtmpSession];
-            break;
-    }
 }
 
 #pragma mark - VCSessionDelegate
@@ -132,6 +121,8 @@
             break;
         case VCSessionStateError:
             [_session startRtmpSessionWithURL:_url andStreamKey:_streamKey];
+            NSLog(@"3");
+            NSLog(self.streamKey);
             break;
         default:
             [self.connectButton setTitle:@"START STREAM" forState:UIControlStateNormal];
@@ -198,9 +189,23 @@
         NSDictionary *jsonDictionaryOrArray = [NSJSONSerialization JSONObjectWithData:self.receivedData options:NSJSONWritingPrettyPrinted error:&jsonError];
         if(jsonError) {
             NSLog(@"json error : %@", [jsonError localizedDescription]);
-        } else {
-            self.streamKey = [jsonDictionaryOrArray objectForKey:@"uniqueId"];
-            NSLog(self.streamKey);
+        }
+        self.streamKey = [jsonDictionaryOrArray objectForKey:@"uniqueId"];
+        NSLog(@"1");
+        NSLog(self.streamKey);
+        
+        switch(_session.rtmpSessionState) {
+            case VCSessionStateNone:
+            case VCSessionStatePreviewStarted:
+            case VCSessionStateEnded:
+            case VCSessionStateError:
+                [_session startRtmpSessionWithURL:_url andStreamKey:_streamKey];
+                NSLog(@"2");
+                NSLog(self.streamKey);
+                break;
+            default:
+                [_session endRtmpSession];
+                break;
         }
     }
     
