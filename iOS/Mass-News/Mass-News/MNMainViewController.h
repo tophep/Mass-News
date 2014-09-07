@@ -15,9 +15,9 @@
 
 @property (retain, nonatomic) IBOutlet UIButton *connectButton;
 @property (retain, nonatomic) UIViewController *popUpViewController;
+@property (retain, nonatomic) NSMutableData *receivedData;
 
 - (IBAction)connectButtonTouch:(id)sender;
-- (void)finishButtonTouch;
-- (void)dataJSONRetrieval;
+- (void)finishButtonTouch:(NSString *)tag;
 
 @end

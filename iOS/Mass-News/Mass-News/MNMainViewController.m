@@ -12,13 +12,15 @@
 #import "UIViewController+ENPopUp.h"
 
 
-@interface MNMainViewController () <VCSessionDelegate, CLLocationManagerDelegate>
+@interface MNMainViewController () <VCSessionDelegate, CLLocationManagerDelegate, NSURLConnectionDataDelegate>
 @property (nonatomic, retain) VCSimpleSession* session;
 @property (nonatomic, copy) NSString* url;
 @property (nonatomic, copy) NSString* streamKey;
+@property (nonatomic, copy) NSString* tag;
 @property (nonatomic, copy) NSString* latitude;
 @property (nonatomic, copy) NSString* longitude;
 @property (nonatomic) CLLocationManager* locationManager;
+@property (nonatomic) BOOL isDoingTagRequest;
 @end
 
 @implementation MNMainViewController
@@ -32,6 +34,8 @@
     
     [self makeNewPopUpViewController];
     
+    self.receivedData = [[NSMutableData alloc] init];
+    
     //Location data retrievel
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
@@ -39,9 +43,9 @@
     [_locationManager startUpdatingLocation];
     
     //_url = @"rtmp://live-ord.twitch.tv/app";
-    _url = @"rtmp://162.243.105.23/live";
+    _url = @"rtmp://massne.ws/live";
     //_streamKey = @"live_70680492_QzRH7KTYxFBRdMKSbt4uYjBWVPprrE";
-    _streamKey = @"test2";
+    _streamKey = @"";
     
     self.view = _session.previewView;
     _session.previewView.frame = [[UIScreen mainScreen] bounds];
@@ -76,7 +80,27 @@
     }
 }
 
-- (void)finishButtonTouch {
+- (void)finishButtonTouch:(NSString *)tag {
+    self.tag = tag;
+    self.isDoingTagRequest = true;
+    
+    NSMutableDictionary *jsonTagDictionary = [[NSMutableDictionary alloc] init];
+    [jsonTagDictionary setObject:tag forKey:@"name"];
+    
+    NSError *error;
+    NSData *jsonTagData = [NSJSONSerialization dataWithJSONObject:jsonTagDictionary options:0 error:&error];
+
+    NSURL *url1 = [[NSURL alloc] initWithString:@"http://massne.ws:8080/api/tags"];
+    NSMutableURLRequest *request1 = [NSMutableURLRequest requestWithURL:url1];
+    [request1 setHTTPMethod:@"POST"];
+    [request1 setValue:[NSString stringWithFormat:@"%d", jsonTagData.length] forHTTPHeaderField:@"Content-Length"];
+    [request1 setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request1 setHTTPBody:jsonTagData];
+    
+    NSURLConnection *connection1 = [[NSURLConnection alloc] initWithRequest:request1
+                                                                  delegate:self];
+    
+    [connection1 start];
     
     [self dismissPopUpViewController];
     
@@ -129,10 +153,57 @@
     
     if (currentLocation != nil) {
         _longitude = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
-        NSLog(_longitude);
+        NSLog(self.longitude);
         _latitude = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
-        NSLog(_latitude);
+        NSLog(self.latitude);
     }
+}
+
+#pragma mark - NSURLConnectionDataDelegate
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+    [self.receivedData appendData:data];
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+    NSLog(@"%@" , error);
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+    
+    if (self.isDoingTagRequest) {
+        NSMutableDictionary *jsonSessionDictionary = [[NSMutableDictionary alloc] init];
+        [jsonSessionDictionary setObject:self.tag forKey:@"name"];
+        [jsonSessionDictionary setObject:[NSNumber numberWithDouble:[self.latitude doubleValue]] forKey:@"latitude"];
+        [jsonSessionDictionary setObject:[NSNumber numberWithDouble:[self.longitude doubleValue]] forKey:@"longitude"];
+        
+        NSData* jsonSessionData = [NSJSONSerialization dataWithJSONObject:jsonSessionDictionary
+                                                                  options:0 error:nil];
+        
+        NSURL *url2 = [[NSURL alloc] initWithString:@"http://massne.ws:8080/api/sessions"];
+        NSMutableURLRequest *request2 = [NSMutableURLRequest requestWithURL:url2];
+        [request2 setHTTPMethod:@"POST"];
+        [request2 setValue:[NSString stringWithFormat:@"%d", jsonSessionData.length] forHTTPHeaderField:@"Content-Length"];
+        [request2 setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request2 setHTTPBody:jsonSessionData];
+        
+        NSURLConnection *connection2 = [[NSURLConnection alloc] initWithRequest:request2
+                                                                       delegate:self];
+        
+        [connection2 start];
+        self.receivedData = [[NSMutableData alloc] init];
+        self.isDoingTagRequest = FALSE;
+    } else {
+        NSError *jsonError;
+        NSDictionary *jsonDictionaryOrArray = [NSJSONSerialization JSONObjectWithData:self.receivedData options:NSJSONWritingPrettyPrinted error:&jsonError];
+        if(jsonError) {
+            NSLog(@"json error : %@", [jsonError localizedDescription]);
+        } else {
+            self.streamKey = [jsonDictionaryOrArray objectForKey:@"uniqueId"];
+            NSLog(self.streamKey);
+        }
+    }
+    
 }
 
 @end
