@@ -11,17 +11,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
 
         <!-- Socket.io -->
         <script src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
 
         <!-- Video.js -->
-        <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+        <link href="http://vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
         <link href="css/video.css" rel="stylesheet">
-        <script src="//vjs.zencdn.net/4.8/video.js"></script>
+        <script src="http://vjs.zencdn.net/4.8/video.js"></script>
     </head>
     <body>
 
@@ -34,22 +34,36 @@
                 <span class="normal">
                     ne.ws
                 </span>
-                <form action="demo_form.asp">
-                  <input type="file" name="pic" accept="video/*" class="gobutton">
-                  <input type="submit" class="gobutton">
-                </form>
+
+                <span class="fa fa-search"></span>
+                <span class="fa fa-video-camera upload-button"></span>
+               
             </span>
+            <div id="where-vid-goes"></div>
 
-            <video id="main-video" class="video-js vjs-default-skin"
-              controls preload="auto" width="100%" height="100%"
-              data-setup='{"example_option":true}'>
-              <source src="rtmp://cp67126.edgefcs.net/ondemand/&mp4:mediapm/ovp/content/test/video/spacealonehd_sounas_640_300.mp4" type="rtmp/mp4">
-             <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-            </video>
+            <!-- Stream Upload -->
+            <div class='stream-upload-bg'>
+              <div class='stream-upload-content'>
+                <div class='stream-viewer-header'>
+                  <span class='stream-upload-exit-button'>X</span>
+                  <span class='stream-viewer-title'>Upload Video</span>
+                </div>
+                <div class='stream-viewer-description'>
+                  <p>
+                     <form action="demo_form.asp">
+                      <input type="file" name="pic" accept="video/*" class="gobutton">
+                      <input type="submit" class="gobutton">
+                    </form>
+                  </p>
+                </div>
+              </div>
+            </div>
 
-            <section class="main-video-text">
+
+
+            <section id="main-video-text">
                 <h1 id="main-video-title">
-                    Boston, MA
+                    Ann Arbor, MA
                 </h1>
                 <h3 id="main-video-desc">
                     Cat shoots owner, all praise Hipno Toad!
@@ -68,13 +82,13 @@
         <div class="spacer"></div>
 
         <div id="main-content" class="two">
-            <div class="list-title followMeBar current"><span class="location">Boston, MA</span></div>
-            <section class="clearfix col1">
-                <div class='video-box'></div>
-                <div class='video-box'></div>
-                <div class='video-box'></div>
-                <div class='video-box'></div>
-                <div class='video-box'></div>
+            <div class="list-title followMeBar current"><span class="location">Ann Arbor, MI</span></div>
+            <section id="ann-arbor-section" class="clearfix col1">
+                <div class='video-box'><iframe width="100%" height="100%" src="//www.youtube.com/embed/jofNR_WkoCE" frameborder="0" allowfullscreen></iframe></div>
+                <div class='video-box'><iframe width="100%" height="100%"  src="//www.youtube.com/embed/E0KVpg3q-tg" frameborder="0" allowfullscreen></iframe></div>
+                <div class='video-box'><iframe width="100%" height="100%" src="//www.youtube.com/embed/MpcU6b456ig" frameborder="0" allowfullscreen></iframe></div>
+                <div class='video-box'><iframe width="100%" height="100%" src="//www.youtube.com/embed/F_8A_8ZjMCY" frameborder="0" allowfullscreen></iframe></div>
+                <div class='video-box'><iframe width="100%" height="100%" src="//www.youtube.com/embed/1MCx0fQAmVY" frameborder="0" allowfullscreen></iframe></div>
             </section>
             <div class="list-title t2 followMeBar next"><span class="location">Anarbor, MI</span></div>
                 <section class="clearfix col1">
@@ -114,22 +128,23 @@
         </div>
 
 
-        <!-- Stream Viewer -->
+
+
         <div class='stream-viewer-bg'>
           <div class='stream-viewer-content'>
             <div class='stream-viewer-header'>
               <span class='stream-viewer-exit-button'>X</span>
-              <span class='stream-viewer-title'>Job of Project Title</span>
+              <span class='stream-viewer-title'>Video Tag</span>
             </div>
             <div class='stream-viewer-description'>
               <p>
-                I am a description about a job or project.
+                I am a description about a Video, and also a video! 
               </p>
             </div>
           </div>
         </div>
 
-`
+
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
