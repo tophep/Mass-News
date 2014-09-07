@@ -169,11 +169,13 @@
 	var putVideoOnMainStream = function(vid){    	
 
 		videojs('main-video').dispose();
-		$src = 'rtmp://massne.ws/live/' + vid.uniqueId ;
+		$src = 'rtmp://massne.ws/live/' + vid.uniqueId;
 		setVideo($src);
 		$('#where-vid-goes').html(video);
 		videojs('main-video').play().muted(true).controls(false);
 
+
+		$('#main-video-desc').html(vid.tag + " (" + vid.latitude + ", " + vid.longitude+") ");
 	};
 
 
