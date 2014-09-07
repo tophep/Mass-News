@@ -53,7 +53,7 @@
     
     self.tag = self.tagField.text;
     self.description = self.descriptionField.text;
-    [_masterVC finishButtonTouch];
+    [_masterVC finishButtonTouch:self.tag];
 
 }
 
