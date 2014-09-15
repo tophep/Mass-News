@@ -1,0 +1,14 @@
+{
+    "name": "MassNews",
+    "version": "0.0.1",
+    "description": "Everybody is a reporter.  News straight from people's phones.",
+    "main": "app.js",
+    "author": "Daniel Marchese, Thomas Clark",
+    "license": "Proprietary",
+    "dependencies": {
+        "express": "3.x",
+        "socket.io": "1.x",
+        "body-parser": "1.x",
+        "crypto": "0.0.3"
+    }
+}
