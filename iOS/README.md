@@ -1,3 +1,3 @@
 #Mass-News
 ##iOS
-The iOS aspect of Mass-News
+The iOS of Mass-News

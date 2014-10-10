@@ -1,3 +1,3 @@
 #Mass-News
 ##Web
-The web aspect of Mass-News
+The Web Frontend and Backend of Mass-News
